@@ -349,7 +349,7 @@ export interface ConnectionOptions {
     trustServerCertificate?: boolean;
 }
 
-export interface ConnectionConfig {
+export interface AuthenticationOptions {
     /**
      * User name to use for authentication.
      */
@@ -361,14 +361,37 @@ export interface ConnectionConfig {
     password?: string;
 
     /**
-     * Hostname to connect to.
-     */
-    server?: string;
-
-    /**
      * Once you set domain, driver will connect to SQL Server using domain login.
      */
     domain?: string;
+}
+
+export interface Authentication {
+
+
+    /**
+     * Authentication type such as: default, ntlm, azure-active-directory-password 
+     */
+    type?: string;
+
+
+    /**
+     * Authentication Options
+     */
+    options?: AuthenticationOptions;
+}
+
+export interface ConnectionConfig {
+
+    /**
+     * Authentication settings.
+     */
+    authentication?: Authentication;
+
+    /**
+     * Hostname to connect to.
+     */
+    server?: string;
 
     /**
      * Further options
